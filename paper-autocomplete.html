@@ -102,16 +102,6 @@
   `<paper-autocomplete>` provides the following custom properties and mixins
   for styling:
 
-  Custom property | Description | Default
-  ----------------|-------------|----------
-  `--paper-input-container-focus-color` | sets the components input container focus color | `var(--primary-color)`
-  `--paper-autocomplete-suggestions-item-min-height` | min height of each suggestion item | `36px`
-  `--paper-autocomplete-suggestions-wrapper` | mixin to apply to the suggestions container | `{}`
-
-  ### Accessibility
-
-  This component is friendly with screen readers (tested only with VoiceOver and NVDA in Windows): current selection
-  and active suggestion are announced.
 
   @demo demo/index.html
 -->
@@ -440,6 +430,10 @@
           type: Function
         },
 
+        clearCb: {
+          type: Function
+        },
+
         /**
          * If `true`, it will always highlight the first result each time new suggestions are presented.
          */
@@ -545,6 +539,8 @@
         if (!this.$.autocompleteInput.focused) {
           this.$.autocompleteInput.focus();
         }
+
+        if(this.clearCb !== undefined) this.clearCb();
       },
 
       /**

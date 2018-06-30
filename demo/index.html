@@ -310,6 +310,7 @@
         var allAutoCompleteStates = document.querySelectorAll('paper-autocomplete.autocomplete-states');
         allAutoCompleteStates.forEach(function (element) {
           element.source = states;
+          element.clearCb = function() { console.log('got it') };
 
           element.addEventListener('autocomplete-selected', function (event) {
             var paperToast = document.querySelector('paper-toast');
